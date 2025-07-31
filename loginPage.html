@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login page jansetu</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+
+    <!-- Left side image carousel -->
+    <div class="left-pane">
+      <div class="carousel">
+        <div class="slide-track">
+          <img src="pics/cleaner.jpg" alt="Cleaner" />
+          <img src="pics/streat1.jpg" alt="Street1" />
+          <img src="pics/garbage.jpg" alt="Garbage" />
+          <img src="pics/fire.jpg" alt="Fire" />
+          <img src="pics/streat2.jpg" alt="Street2" />
+          <img src="pics/garbage2.jpg" alt="Garbage2" />
+          <img src="pics/all.png" alt="Smiling kids (clone)" /> <!-- Cloned first image -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Right side login form -->
+     
+    <div class="right-pane">
+      
+      <div class="form-box">
+        <div class="logos">
+          <img src="/images/mohua-logo.png" alt="Government of India" class="gov-logo"/>
+        </div>
+
+
+  <h2 class="jansetu-heading">जनसेतु</h2>
+
+        <!-- Login Form -->
+<div id="loginForm">
+  <form>
+    <label>Phone No.</label>
+    <input type="text" placeholder="Enter Phone No." required />
+
+    <label>Password</label>
+    <div class="password-wrap">
+      <input type="password" placeholder="Enter Password" required />
+      <span class="toggle-pwd">👁️</span>
+    </div>
+
+    <label>Captcha</label>
+    <div class="captcha-wrap">
+      <input type="text" placeholder="Enter Captcha" required />
+      <span class="captcha-img">qakyxy</span>
+      <button type="button" class="refresh">⟳</button>
+    </div>
+
+    <button type="submit" class="btn-submit">Sign In</button>
+  </form>
+  <div class="links">
+    <a href="#" onclick="toggleForm('register')">Don’t have an account? Register here</a>
+  </div>
+</div>
+
+<!-- Register Form -->
+<div id="registerForm" style="display: none;">
+  <form>
+    <label>Full Name</label>
+    <input type="text" placeholder="Enter your full name" required>
+
+    <label>Mobile Number</label>
+    <input type="text" placeholder="Enter mobile number" required>
+
+    <label>Email ID</label>
+    <input type="email" placeholder="Enter email (optional)">
+
+    <label>Password</label>
+    <div class="password-wrap">
+      <input type="password" placeholder="Create password" required>
+      <span class="toggle-pwd">👁️</span>
+    </div>
+
+    <label>Confirm Password</label>
+    <input type="password" placeholder="Re-enter password" required>
+
+    <!-- <label>Captcha</label>
+    <div class="captcha-wrap">
+      <input type="text" placeholder="Enter Captcha" required>
+      <span class="captcha-img">n9fjks</span>
+      <button type="button" class="refresh">⟳</button>
+    </div> -->
+
+    <button type="submit" class="btn-submit">Register</button>
+  </form>
+  <div class="links">
+    <a href="#" onclick="toggleForm('login')">Already have an account? Sign in</a>
+  </div>
+</div>
+
+
+        <!-- <div class="footer-text">
+          जनसेतु<br/>
+          <button class="btn-download">Download Guidelines</button>
+        </div>
+      </div> -->
+
+</div>
+    </div>
+
+    <!-- Floating vertical button -->
+    <a href="#" class="sbmu-button">जनसेतु</a>
+    </div>
+  </div>
+
+  <script>
+    // Toggle carousel images
+    let idx = 0;
+const track = document.querySelector('.slide-track');
+const slides = document.querySelectorAll('.slide-track img');
+const totalSlides = slides.length;
+
+// Start sliding
+setInterval(() => {
+  idx++;
+
+  track.style.transition = "transform 0.5s ease-in-out";
+  track.style.transform = `translateX(-${idx * 700}px)`;
+
+  // Reset when reaching the duplicate last slide
+  if (idx === totalSlides - 1) {
+    setTimeout(() => {
+      // No transition so user doesn't notice the jump
+      track.style.transition = "none";
+      idx = 0;
+      track.style.transform = `translateX(0)`;
+    }, 500); // Match the duration of the slide transition
+  }
+}, 4000);
+
+
+    // Toggle password visibility
+    document.querySelector('.toggle-pwd').addEventListener('click', () => {
+      const pwd = document.querySelector('input[type="password"], input[type="text"]');
+      const type = pwd.getAttribute('type') === 'password' ? 'text' : 'password';
+      pwd.setAttribute('type', type);
+    });
+
+    // Toggle between login and register forms
+    function toggleForm(formType) {
+  const login = document.getElementById('loginForm');
+  const register = document.getElementById('registerForm');
+
+  if (formType === 'register') {
+    login.style.display = 'none';
+    register.style.display = 'block';
+  } else {
+    login.style.display = 'block';
+    register.style.display = 'none';
+  }
+}
+
+  </script>
+</body>
+
+
+</html>

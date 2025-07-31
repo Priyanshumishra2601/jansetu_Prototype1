@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="stylesheet" href="adminpage.css">
+  <title>Admin Dashboard - Indian Flag Theme</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #FF9933; /* Saffron */
+      color: white;
+      padding: 20px 15px;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 30px;
+      font-size: 24px;
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      margin: 12px 0;
+      font-size: 16px;
+      padding: 10px;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    .nav a:hover {
+      background-color: #e07c18;
+    }
+
+    .main {
+      flex-grow: 1;
+      padding: 30px;
+      background-color: #fff;
+    }
+
+    .main h1 {
+      margin-bottom: 25px;
+      color: #054187; /* Blue */
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      text-align: left;
+      padding: 14px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #138808; /* Green */
+      color: white;
+    }
+
+    td button {
+      margin-right: 6px;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .view-btn {
+      background-color: #054187;
+      color: white;
+    }
+
+    .verify-btn {
+      background-color: #f5a623;
+      color: white;
+    }
+
+    .reject-btn {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    .status {
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-size: 13px;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    .pending {
+      background-color: #f8d7da;
+      color: #c82333;
+    }
+
+    .progress {
+      background-color: #d1ecf1;
+      color: #0c5460;
+    }
+
+    .resolved {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .rejected {
+      background-color: #fbeaea;
+      color: #990000;
+    }
+
+    .assigned {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+
+    .dropdown {
+      padding: 6px 10px;
+      background-color: #eee;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        text-align: center;
+      }
+      .main {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>ADMIN</h2>
+    <div class="nav">
+      <a href="homepage.html">Home</a>
+      <a href="public.html">All Complaints</a>
+      <a href="">Assigned Complaints</a>
+      <a href="officersPage.html">Officers</a>
+      <a href="#">Logout</a>
+    </div>
+  </div>
+
+  <div class="main">
+    <h1>All Complaints</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID / Title</th>
+          <th>Department</th>
+          <th>Submitted By</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>#1234<br/>Pothole on Main St</td>
+          <td>Roads</td>
+          <td>Rajesh K.</td>
+          <td>
+            <button class="view-btn">View</button>
+            <select class="dropdown status-select">
+              <option value="pending">Pending</option>
+              <option value="assigned">Assigned</option>
+              <option value="progress">In Progress</option>
+              <option value="resolved">Resolved</option>
+              <option value="rejected">Rejected</option>
+            </select>
+            <div class="status pending">Pending</div>
+            <td><button onclick="viewMap(26.4499, 80.3319)">View Map</button></td>
+          </td>
+        </tr>
+        <tr>
+          <td>#1233<br/>Water Supply Issue</td>
+          <td>Water</td>
+          <td>Priya S.</td>
+          <td>
+            <button class="view-btn">View</button>
+            <select class="dropdown status-select">
+              <option value="pending">Pending</option>
+              <option value="assigned">Assigned</option>
+              <option value="progress">In Progress</option>
+              <option value="resolved">Resolved</option>
+              <option value="rejected">Rejected</option>
+            </select>
+            <div class="status assigned">Assigned</div>
+            <td><button onclick="viewMap(26.4499, 80.3319)">View Map</button></td>
+          </td>
+        </tr>
+        <tr>
+          <td>#1232<br/>Streetlight Not Working</td>
+          <td>Electricity</td>
+          <td>Amit P.</td>
+          <td>
+            <button class="view-btn">View</button>
+            <select class="dropdown status-select">
+              <option value="pending">Pending</option>
+              <option value="assigned">Assigned</option>
+              <option value="progress" selected>In Progress</option>
+              <option value="resolved">Resolved</option>
+              <option value="rejected">Rejected</option>
+            </select>
+            <div class="status progress">In Progress</div>
+            <td><button onclick="viewMap(26.4499, 80.3319)">View Map</button></td>
+          </td>
+        </tr>
+        <tr>
+          <td>#1231<br/>Garbage Dumping</td>
+          <td>Sanitation</td>
+          <td>Sunita M.</td>
+          <td>
+            <button class="view-btn">View</button>
+            <select class="dropdown status-select">
+              <option value="pending">Pending</option>
+              <option value="assigned">Assigned</option>
+              <option value="progress">In Progress</option>
+              <option value="resolved" selected>Resolved</option>
+              <option value="rejected">Rejected</option>
+            </select>
+            <div class="status resolved">Resolved</div>
+            <td><button onclick="viewMap(26.4499, 80.3319)">View Map</button></td>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    document.querySelectorAll('.status-select').forEach(function(select) {
+      select.addEventListener('change', function() {
+        const statusDiv = this.nextElementSibling;
+        const status = this.value;
+
+        // Remove all status classes
+        statusDiv.className = 'status';
+
+        // Add new status class and text
+        if (status === 'pending') {
+          statusDiv.classList.add('pending');
+          statusDiv.textContent = 'Pending';
+        } else if (status === 'assigned') {
+          statusDiv.classList.add('assigned');
+          statusDiv.textContent = 'Assigned';
+        } else if (status === 'progress') {
+          statusDiv.classList.add('progress');
+          statusDiv.textContent = 'In Progress';
+        } else if (status === 'resolved') {
+          statusDiv.classList.add('resolved');
+          statusDiv.textContent = 'Resolved';
+        } else if (status === 'rejected') {
+          statusDiv.classList.add('rejected');
+          statusDiv.textContent = 'Rejected';
+        }
+      });
+    });
+
+    function viewMap(lat, lng) {
+    const url = `https://www.google.com/maps?q=${lat},${lng}&z=15&output=embed`;
+    const mapWindow = window.open("", "_blank", "width=600,height=450");
+    mapWindow.document.write(`
+      <title>Complaint Location</title>
+      <iframe src="${url}" width="100%" height="100%" style="border:0;"></iframe>
+    `);
+  }
+  </script>
+</body>
+</html>

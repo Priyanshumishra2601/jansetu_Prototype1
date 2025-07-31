@@ -1,0 +1,140 @@
+* {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #B089FF; /* Saffron */
+      color: white;
+      padding: 20px 15px;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 30px;
+      font-size: 24px;
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      margin: 12px 0;
+      font-size: 16px;
+      padding: 10px;
+      border-radius: 6px;
+      transition: background 0.3s;
+      font-weight: 800;
+    }
+
+    .nav a:hover {
+      background-color: #eee;
+    }
+
+    .main {
+      flex-grow: 1;
+      padding: 30px;
+      background-color: #fff;
+    }
+  
+
+
+    .main h1 {
+      margin-bottom: 25px;
+      color: #054187; /* Blue */
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      text-align: left;
+      padding: 14px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #B089FF; /* Green */
+      color: white;
+    }
+
+    td button {
+      margin-right: 6px;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .view-btn {
+      background-color: #B089FF; /* Navy Blue */
+      color: white;
+    }
+
+    .verify-btn {
+      background-color: #f5a623;
+      color: white;
+    }
+
+    .reject-btn {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    .status {
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-size: 13px;
+      display: inline-block;
+    }
+
+    .pending {
+      background-color: #f8d7da;
+      color: #c82333;
+    }
+
+    .progress {
+      background-color: #d1ecf1;
+      color: #0c5460;
+    }
+
+    .resolved {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .dropdown {
+      padding: 5px 10px;
+      background-color: #eee;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        text-align: center;
+      }
+      .main {
+        padding: 20px;
+      }
+    }

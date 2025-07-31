@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Complaint Portal</title>
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      background: #f5f5f5;
+      overflow: hidden;
+    }
+
+    .navbar {
+      width: 180px;
+      background: #B089FF;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 30px;
+      z-index: 2;
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      color: white;
+      margin: 10px 0;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .nav-btn:hover {
+      text-decoration: underline;
+    }
+
+    .main {
+      display: flex;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    /* .left, .right {
+      width: 50%;
+      padding: 20px;
+      overflow-y: auto;
+    } */
+
+    /* ... keep existing styles above this ... */
+
+.left, .right {
+  width: 50%;
+  padding: 30px;
+  overflow-y: auto;
+  border: 2px solid #ccc;      /* Border added */
+  border-radius: 10px;          /* Rounded corners reduced */
+  background-color: #fff;
+  margin: 20px;                /* Space around both sections */
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Remove or update if this was previously here */
+.left {
+  border-right: none;         /* Removed divider if any */
+}
+
+
+    /* .left {
+      border-right: 2px solid #ccc;
+      background: #fff;
+    } */
+
+    .right {
+      background: #ffffff;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #8766C8;
+      text-align: center;
+    }
+
+    select, input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 15px;
+      background-color: #B089FF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    #locationText {
+      font-size: 0.9em;
+      color: #333;
+    }
+
+    .saved-item {
+      border: 1px solid #ddd;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      background: #ffffff;
+      position: relative;
+    }
+
+    .saved-item img {
+      max-width: 150px;
+      height: auto;
+      margin-top: 10px;
+      border-radius: 5px;
+      display: block;
+    }
+
+    .delete-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 5px 8px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+
+    #customCategory {
+      display: none;
+    }
+
+    .jansetu-heading {
+      font-size: 30px;
+      text-align: center;
+      background: linear-gradient(#FBFBFB, #000000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+      font-weight: bold;
+    }
+
+    .status {
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 5px;
+      display: inline-block;
+    }
+
+    .Pending { background-color: #ffc107; color: #000; }
+    .Ongoing { background-color: #17a2b8; color: #fff; }
+    .Completed { background-color: #28a745; color: #fff; }
+    .Rejected { background-color: #dc3545; color: #fff; }
+
+    #searchInput {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+    }
+
+    .fullscreen {
+      width: 100% !important;
+    }
+
+    #returnBtn {
+      display: none;
+      margin-bottom: 15px;
+      background-color: #007bff;
+    }
+
+    #returnBtn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==== NAVBAR ==== -->
+  <div class="navbar">
+    <h2 class="jansetu-heading ">जनसेतु</h2>
+    <a href="homepage.html" class="nav-btn" style="text-decoration: none;">Home</a>
+    <button class="nav-btn" onclick="scrollToSection('form')">Complaint Form</button>
+    <button class="nav-btn" onclick="showSavedComplaints()">Saved Complaints</button>
+  </div>
+
+  <!-- ==== MAIN AREA ==== -->
+  <div class="main" id="mainContainer">
+    <!-- Complaint Form -->
+    <div class="left" id="form">
+      <h2>Complaint Form</h2>
+      
+      <label for="category">Select Category</label>
+      <select id="category" onchange="toggleCustomCategory(this.value)">
+        <option value="">--Select Category--</option>
+        <option value="Electricity">Electricity</option>
+        <option value="Water">Water</option>
+        <option value="Garbage">Garbage</option>
+        <option value="Road Damage">Road Damage</option>
+        <option value="Street Light">Street Light</option>
+        <option value="Other">Other (Manual Entry)</option>
+      </select>
+
+      <input type="text" id="customCategory" placeholder="Enter Custom Category"/>
+
+      <label for="title">Complaint Title</label>
+      <input type="text" id="title" placeholder="Enter Title" />
+
+      <label for="description">Description</label>
+      <textarea id="description" rows="4" placeholder="Describe the issue..."></textarea>
+
+      <label for="date">Date of Complaint</label>
+      <input type="date" id="date"/>
+
+      <label for="imageInput">Upload Image</label>
+      <input type="file" id="imageInput" accept="image/*"/>
+
+      <button onclick="getLocation()">Get Location</button>
+      <p id="locationText">Location: Not fetched</p>
+
+      <button onclick="submitForm()">Submit Complaint</button>
+    </div>
+
+    <!-- Saved Complaints -->
+    <div class="right" id="saved">
+      <h2>Saved Complaints</h2>
+      <button id="returnBtn" onclick="returnToSplitView()">Return</button>
+      <input type="text" id="searchInput" placeholder="Search by category, title, or location..." oninput="displayComplaints()"/>
+      <div id="savedList"></div>
+    </div>
+  </div>
+
+  <script>
+    let latitude = "";
+    let longitude = "";
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          latitude = position.coords.latitude;
+          longitude = position.coords.longitude;
+          document.getElementById("locationText").textContent =
+            `Location: ${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
+        }, () => {
+          alert("Location access denied.");
+        });
+      } else {
+        alert("Geolocation not supported.");
+      }
+    }
+
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function toggleCustomCategory(value) {
+      const customInput = document.getElementById("customCategory");
+      customInput.style.display = value === "Other" ? "block" : "none";
+    }
+
+    function submitForm() {
+      const categorySelect = document.getElementById("category").value;
+      const customCategory = document.getElementById("customCategory").value;
+      const category = categorySelect === "Other" ? customCategory : categorySelect;
+      const title = document.getElementById("title").value;
+      const description = document.getElementById("description").value;
+      const date = document.getElementById("date").value;
+      const imageFile = document.getElementById("imageInput").files[0];
+
+      if (!category || !title || !description || !imageFile || !latitude || !date) {
+        alert("Please fill all fields, upload image, select date, and get location.");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function () {
+        const complaint = {
+          id: Date.now(),
+          category, title, description, date,
+          image: reader.result,
+          location: `${latitude.toFixed(4)}, ${longitude.toFixed(4)}`,
+          status: "Pending"
+        };
+
+        const data = JSON.parse(localStorage.getItem("complaints") || "[]");
+        data.push(complaint);
+        localStorage.setItem("complaints", JSON.stringify(data));
+        displayComplaints();
+
+        document.getElementById("category").value = "";
+        document.getElementById("customCategory").value = "";
+        document.getElementById("customCategory").style.display = "none";
+        document.getElementById("title").value = "";
+        document.getElementById("description").value = "";
+        document.getElementById("date").value = "";
+        document.getElementById("imageInput").value = "";
+        document.getElementById("locationText").textContent = "Location: Not fetched";
+        latitude = ""; longitude = "";
+      };
+      reader.readAsDataURL(imageFile);
+    }
+
+    function deleteComplaint(id) {
+      let data = JSON.parse(localStorage.getItem("complaints") || "[]");
+      data = data.filter(item => item.id !== id);
+      localStorage.setItem("complaints", JSON.stringify(data));
+      displayComplaints();
+    }
+
+    function changeStatus(id, newStatus) {
+      let data = JSON.parse(localStorage.getItem("complaints") || "[]");
+      const index = data.findIndex(item => item.id === id);
+      if (index !== -1) {
+        data[index].status = newStatus;
+        localStorage.setItem("complaints", JSON.stringify(data));
+        displayComplaints();
+      }
+    }
+
+    function displayComplaints() {
+      const searchValue = document.getElementById("searchInput").value.toLowerCase();
+      const savedList = document.getElementById("savedList");
+      savedList.innerHTML = "";
+
+      const data = JSON.parse(localStorage.getItem("complaints") || "[]");
+
+      data.reverse().forEach(item => {
+        const match = [item.category, item.title, item.location]
+          .some(field => field.toLowerCase().includes(searchValue));
+        if (!match) return;
+
+        const div = document.createElement("div");
+        div.className = "saved-item";
+        div.innerHTML = `
+          <button class="delete-btn" onclick="deleteComplaint(${item.id})">🗑️</button>
+          <strong>Category:</strong> ${item.category}<br/>
+          <strong>Title:</strong> ${item.title}<br/>
+          <strong>Date:</strong> ${item.date}<br/>
+          <p><strong>Description:</strong> ${item.description}</p>
+          <img src="${item.image}" alt="Complaint Image"/>
+          <p><strong>📍 Location:</strong> ${item.location}</p>
+          <p>
+            <strong>Status:</strong>
+            <span class="status ${item.status}">${item.status}</span>
+            <select onchange="changeStatus(${item.id}, this.value)">
+              <option value="Pending" ${item.status === "Pending" ? "selected" : ""}>Pending</option>
+              <option value="Ongoing" ${item.status === "Ongoing" ? "selected" : ""}>Ongoing</option>
+              <option value="Completed" ${item.status === "Completed" ? "selected" : ""}>Completed</option>
+              <option value="Rejected" ${item.status === "Rejected" ? "selected" : ""}>Rejected</option>
+            </select>
+          </p>
+        `;
+        savedList.appendChild(div);
+      });
+    }
+
+    function showSavedComplaints() {
+      document.querySelector('.left').style.display = 'none';
+      document.querySelector('.right').classList.add('fullscreen');
+      document.getElementById('returnBtn').style.display = 'inline-block';
+    }
+
+    function returnToSplitView() {
+      document.querySelector('.left').style.display = 'block';
+      document.querySelector('.right').classList.remove('fullscreen');
+      document.getElementById('returnBtn').style.display = 'none';
+    }
+
+    window.onload = displayComplaints;
+  </script>
+</body>
+</html>

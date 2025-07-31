@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Submit Complaint</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f7f7f7;
+    }
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .view-btn {
+      background-color: #007bff;
+      margin-top: 10px;
+    }
+    .view-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 id="category-title">Complaint</h2>
+    <form id="complaint-form">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" required />
+
+      <label for="location">Location:</label>
+      <input type="text" id="location" required />
+
+      <label for="description">Issue Description:</label>
+      <textarea id="description" rows="5" required></textarea>
+
+      <button type="submit">Submit Complaint</button>
+    </form>
+
+    <button class="view-btn" onclick="window.location.href='complaint-list.html'">View Submitted Complaints</button>
+  </div>
+
+  <script>
+    const category = localStorage.getItem("selectedCategory");
+    document.getElementById("category-title").textContent = category || "Complaint";
+
+    document.getElementById("complaint-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Get input values properly
+      const name = document.getElementById("name").value.trim();
+      const location = document.getElementById("location").value.trim();
+      const description = document.getElementById("description").value.trim();
+
+      const complaint = {
+        category: category || "General",
+        name,
+        location,
+        description
+      };
+
+      let complaints = JSON.parse(localStorage.getItem("submittedComplaints")) || [];
+      complaints.push(complaint);
+      localStorage.setItem("submittedComplaints", JSON.stringify(complaints));
+
+      alert(`Complaint submitted successfully!\n\nCategory: ${complaint.category}\nName: ${complaint.name}\nLocation: ${complaint.location}\nDescription: ${complaint.description}`);
+
+      this.reset();
+      // window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+/* --- Global Styles --- */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif;
+ }
+body, html { height: 100%;
+ }
+a { text-decoration: none; color: #2980b9; }
+button { cursor: pointer; }
+ 
+  .main{
+  background-image: url('pics/map.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.jansetu-heading {
+      font-size: 48px;
+      text-align: center;
+      background: linear-gradient(#FF9933, #138808); /* Saffron to Green */
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+      font-weight: bold;
+    }
+
+/* --- Layout --- */
+.container {
+  display: flex;
+  height: 100%;
+}
+.left-pane, .right-pane {
+  flex: 1;
+  position: relative;
+  
+}
+.left-pane {
+  width: 65%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fffefe;
+  padding: 20px;
+}
+.right-pane {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+/* --- Image Carousel --- */
+.carousel {
+  width: 700px;
+  height: 650px;
+  overflow: hidden;
+  border: 3px solid green;
+  border-radius: 12px;
+  position: relative;
+}
+
+.slide-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide-track img {
+  width: 700px;
+  height: 100%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 12px;
+}
+
+
+.carousel img.active {
+  display: block;
+  opacity: 1;
+}
+
+/* --- Form Box --- */
+.form-box {
+  width: 320px;
+}
+.logos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.gov-logo { height: 60px; 
+height: 72px;
+  padding-left: 74px;}
+.swachh-logo { height: 90px;
+  padding-right: 58px; }
+
+/* --- Form Titles --- */
+h2 {
+  text-align: center;
+  color: #27ae60;
+  margin: 20px 0;
+}
+
+/* --- User Type Selection --- */
+.user-type {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.user-type label {
+  margin: 0 10px;
+  font-size: 14px;
+}
+
+/* --- Form Fields --- */
+form label {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+form input {
+  width: 100%;
+  padding:12px 12px;
+  margin-top: 2px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* --- Password Toggle --- */
+.password-wrap {
+  position: relative;
+}
+.toggle-pwd {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+/* --- Captcha Layout --- */
+.captcha-wrap {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+}
+.captcha-wrap input { flex: 1; }
+.captcha-img {
+  background: #ecf0f1;
+  padding: 6px 10px;
+  margin: 0 8px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+.refresh {
+  border: none;
+  background: none;
+  font-size: 18px;
+}
+
+/* --- Submit Button --- */
+.btn-submit {
+  width: 100%;
+  padding: 10px;
+  margin: 20px 0;
+  background: linear-gradient(90deg, #f7941d, #27ae60);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+}
+
+/* --- Footer Links & Text --- */
+.links {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+.footer-text {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 12px;
+}
+.btn-download {
+  margin-top: 6px;
+  padding: 6px 10px;
+  border: 1px solid #27ae60;
+  background: none;
+  color: #27ae60;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* --- Floating SBMU Button --- */
+.sbmu-button {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #2980b9;
+  padding: 10px 14px;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 4px 0 0 4px;
+}
+
+
+/* border */
+
+.indian-flag {
+  width: 300px;
+  height: 150px;
+  border: 2px solid #000;
+  background: linear-gradient(
+    to bottom,
+    #FF9933 33.33%,   /* Saffron */
+    #FFFFFF 33.33% 66.66%,  /* White */
+    #138808 66.66%     /* Green */
+  );
+  position: relative;
+}
+
+/* Optional: Add Ashoka Chakra in the center */
+.indian-flag::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3d/Ashoka_Chakra_transparent.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 60px;
+  height: 60px;
+  opacity: 0.9;
+}

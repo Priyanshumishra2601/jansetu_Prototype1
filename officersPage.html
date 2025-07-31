@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Officer Dashboard - Jan Setu</title>
+  <link rel="stylesheet" href="officers.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+  <!-- Toggle Button -->
+  <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <h2>👨‍✈️ Officer</h2>
+    <ul>
+      <li><a href="#home">🏠 Home</a></li>
+      <li><a href="#assigned">🛠 Assigned Complaints</a></li>
+      <li><a href="#resolved">✅ Resolved Complaints</a></li>
+      <li><a href="#profile">👤 Profile</a></li>
+      <li><a href="#">🚪 Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    
+    <!-- Assigned Complaints -->
+    <section id="assigned" class="complaint-section">
+      <h2>🛠 Assigned Complaints</h2>
+      <table class="table">
+        <tr>
+          <th>Complaint Title</th>
+          <th>Department</th>
+          <th>Assigned Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+        <tr>
+          <td>Broken Water Pipe</td>
+          <td>Water</td>
+          <td>2025-07-15</td>
+          <td><span class="status-badge status-pending">In Progress</span></td>
+          <td>
+            <button class="btn">Start Work</button>
+            <button class="btn">Mark Resolved</button>
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- Resolved Complaints -->
+    <section id="resolved" class="complaint-section">
+      <h2>✅ Resolved Complaints</h2>
+      <table class="table">
+        <tr>
+          <th>Complaint Title</th>
+          <th>Department</th>
+          <th>Assigned Date</th>
+          <th>Status</th>
+        </tr>
+        <tr>
+          <td>Street Light Fixed</td>
+          <td>Electricity</td>
+          <td>2025-07-10</td>
+          <td><span class="status-badge status-resolved">Resolved</span></td>
+        </tr>
+      </table>
+    </section>
+
+  </div>
+
+  <!-- JavaScript to toggle sidebar -->
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("hidden");
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  color: #000;
+}
+
+.container {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.custom-shape {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+ .custom-shape svg{
+    position: relative;
+    display: block;
+    width: calc(163% + 1.3px);
+    height: 650px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.custom-shape .shape-fill {
+    fill: #b089ff;
+}
+
+/** For mobile devices **/
+@media (max-width: 767px) {
+    .custom-shape svg {
+        width: calc(262% + 1.3px);
+        height: 125px;
+    }
+}
+
+
+/* .map{
+  position: absolute;
+  width: 500px-47;
+  height : 100%;
+  display: flex;
+  top: 0;
+  right: 33%;
+  z-index: -1;
+  opacity: 0.4;
+} */
+
+.map {
+  position: absolute;
+  width: 500px; /* Corrected */
+  height: 100%;
+  top: 0;
+  right: 33%;
+  z-index: -1; 
+  opacity: 0.4;
+  pointer-events: none; /* Add this line */
+}
+
+
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 60;
+  color: #000;
+}
+
+nav {
+  z-index: 2; /* add this to ensure it stays clickable */
+}
+
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #000;
+  font-weight: 900;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+main h1 {
+  font-size: 75px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+  text-align: left;
+  padding-left: 15%;
+
+}
+
+main p {
+  font-size: 25px;
+  margin: 0 auto 40px auto;
+  font-weight: 500;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+  text-align: left;
+  padding-left: 15%;
+}
+
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.stat {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.stat span {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  /* margin-bottom: 5px; */
+  margin: 8px 0px;
+}
+
+.stat p {
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  width: 115%;
+  padding: 2px 20px;
+  padding-left: 7px;
+  margin: 9px 0px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 4px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+  font-weight: 300;
+  
+}
+
+.report {
+  background-color: #8d33c7; /* India Saffron */
+  box-shadow: 0 0px 6px rgba(255, 255, 255, 2);
+  border: 2px solid #5921b5;
+  
+}
+
+.view {
+  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.5);
+  border: 1.75px solid #5921b5;
+  color: #5921b5;
+
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+
+/* --- Mobile Menu Styles --- */
+.menu-toggle {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Hide nav on small screens initially */
+@media (max-width: 768px) {
+  nav {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background-color: white;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 2;
+  }
+
+  nav a {
+    margin: 10px 0;
+  }
+
+
+}
+
+
+
+
+
+
